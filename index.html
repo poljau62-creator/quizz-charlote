@@ -63,10 +63,12 @@
 
 <div class="container">
   <h1>Cuestionario final</h1>
+
   <div id="progress-container" style="width:100%;background:#eee;border-radius:20px;overflow:hidden;margin-bottom:20px;">
     <div id="progress-bar" style="width:0%;height:18px;background:linear-gradient(90deg,#ff6f61,#ffb347);transition:width 0.4s ease;"></div>
   </div>
 
+  <!-- PREGUNTAS -->
   <div class="question active" data-correct="d">
     <p>1. ¿Cuál es el mejor grupo de clase?</p>
     <label><input type="radio" name="q1" value="a"> Los raris</label>
@@ -126,20 +128,23 @@
   <div class="question" id="final"></div>
 </div>
 
+<!-- AUDIOS -->
 <audio id="correctSound" src="https://www.soundjay.com/buttons/sounds/button-3.mp3"></audio>
 <audio id="wrongSound" src="https://www.soundjay.com/buttons/sounds/button-10.mp3"></audio>
 <audio id="winSound" src="https://www.soundjay.com/human/sounds/applause-01.mp3"></audio>
 <audio id="loseSound" src="https://www.soundjay.com/human/sounds/boo-01.mp3"></audio>
 
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
 <script>
 let score = 0;
-let totalQuestions = document.querySelectorAll('.question').length - 1; // excluye final
+let totalQuestions = document.querySelectorAll('.question').length - 1;
 let currentQuestion = 1;
 let answered = 0;
 
 function nextQuestion(button) {
-  updateProgress();(button) {
+  updateProgress();
+
   const q = button.parentElement;
   const correct = q.dataset.correct.split(',');
   const selected = q.querySelector('input[type=radio]:checked');
@@ -152,6 +157,7 @@ function nextQuestion(button) {
 
   answered++;
   currentQuestion++;
+
   if (correct.includes(selected.value)) {
     score++;
     feedback.textContent = '✅ Respuesta correcta';
@@ -164,6 +170,7 @@ function nextQuestion(button) {
   }
 
   button.disabled = true;
+
   setTimeout(() => {
     q.classList.remove('active');
     const next = q.nextElementSibling;
@@ -177,7 +184,7 @@ function updateProgress() {
   document.getElementById('progress-bar').style.width = percent + '%';
 }
 
-function showResults() {() {
+function showResults() {
   const final = document.getElementById('final');
   const aprobado = score >= Math.ceil(answered / 2);
 
@@ -204,6 +211,7 @@ function showResults() {() {
   });
 }
 
+/* CONFETTI */
 const canvas = document.getElementById('confetti');
 const ctx = canvas.getContext('2d');
 canvas.width = window.innerWidth;
@@ -234,5 +242,6 @@ function animateConfetti() {
   requestAnimationFrame(animateConfetti);
 }
 </script>
+
 </body>
 </html>
