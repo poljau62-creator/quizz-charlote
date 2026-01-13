@@ -160,11 +160,11 @@ function nextQuestion(button) {
 
   if (correct.includes(selected.value)) {
     score++;
-    feedback.textContent = '✅ Respuesta correcta';
+    feedback.textContent = 'Respuesta correcta';
     feedback.className = 'feedback correct';
     document.getElementById('correctSound').play();
   } else {
-    feedback.textContent = '❌ Respuesta incorrecta';
+    feedback.textContent = 'Respuesta incorrecta';
     feedback.className = 'feedback incorrect';
     document.getElementById('wrongSound').play();
   }
